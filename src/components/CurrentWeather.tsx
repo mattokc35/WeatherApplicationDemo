@@ -20,7 +20,7 @@ const WeatherPanel: React.FC<WeatherPanelProps> = ({ weatherData }) => {
       sx={{
         width: "100%",
         boxShadow: 4,
-        borderRadius: 4,
+        borderRadius: 2,
       }}
     >
       <CardContent>

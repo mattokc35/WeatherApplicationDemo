@@ -70,7 +70,7 @@ const WeatherForecast: React.FC<{ lat: number; lon: number }> = ({
         {Object.entries(groupForecastsByDay()).map(
           ([day, forecasts], index) => (
             <Grid item xs={12} key={index}>
-              <Card>
+              <Card sx={{ borderRadius: 2 }}>
                 <CardContent>
                   <Typography sx={{ marginBottom: "10px" }} variant="h6">
                     {day}
@@ -91,7 +91,10 @@ const WeatherForecast: React.FC<{ lat: number; lon: number }> = ({
                           lg={3}
                           key={idx}
                         >
-                          <Card style={{ ...cardStyles, height: "100%" }}>
+                          <Card
+                            style={{ ...cardStyles, height: "100%" }}
+                            sx={{ borderRadius: 2 }}
+                          >
                             <CardContent>
                               <Typography variant="subtitle1">
                                 {new Date(
