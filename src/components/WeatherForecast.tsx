@@ -72,7 +72,9 @@ const WeatherForecast: React.FC<{ lat: number; lon: number }> = ({
             <Grid item xs={12} key={index}>
               <Card>
                 <CardContent>
-                  <Typography variant="h6">{day}</Typography>
+                  <Typography sx={{ marginBottom: "10px" }} variant="h6">
+                    {day}
+                  </Typography>
                   <Grid container spacing={2}>
                     {forecasts.map((forecast: any, idx: number) => {
                       const forecastTime = new Date(
