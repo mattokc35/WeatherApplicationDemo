@@ -1,6 +1,6 @@
 # Weather Application Demo
 
-I built this Weather Application with React, TypeScript, Vite, MaterialUI, and OpenWeather API.
+I built this Weather Application with React, TypeScript, Vite, MaterialUI, Jest and OpenWeather API.
 
 ## How To Run The Application
 
