@@ -12,6 +12,7 @@ import {
   fetchWeatherData,
   fetchGeolocationData,
 } from "./network/networkRequests";
+
 function App() {
   const [currentWeatherData, setCurrentWeatherData] =
     useState<WeatherData | null>(null);
@@ -19,14 +20,16 @@ function App() {
   const [lat, setLat] = useState<number>(0);
   const [long, setLong] = useState<number>(0);
   const [loading, setLoading] = useState(false);
+  const [locationNotFound, setLocationNotFound] = useState(false);
 
   async function handleSearch(location: string) {
     setLoading(true);
+    setLocationNotFound(false);
     try {
       const geolocationData = await fetchGeolocationData(location);
 
       if (geolocationData.length === 0) {
-        console.error("Location not found");
+        setLocationNotFound(true);
         return;
       }
 
@@ -78,17 +81,22 @@ function App() {
           <>
             <h1>Weather Application Demo</h1>
             <p>{`Enter a location (City), (City, State, Country), or (City, Country) or a zip code to check the weather! Zip Code search currently only works for US zip codes.`}</p>
-            <p>Example Searches: (Houston, Texas, US) or (77479)</p>
+            <p>Example Searches: (Houston), (Houston, Texas, US) or (77479)</p>
           </>
         )}
         <div style={{ margin: "10px 0" }}></div>
         <SearchBar onSearch={handleSearch} />
-        {locationName && <h2>Weather in {locationName}</h2>}
-        {currentWeatherData && (
-          <WeatherPanel weatherData={currentWeatherData} />
+        {!locationNotFound && (
+          <>
+            {locationName && <h2>Weather in {locationName}</h2>}
+            {currentWeatherData && (
+              <WeatherPanel weatherData={currentWeatherData} />
+            )}
+            {currentWeatherData && <WeatherForecast lat={lat} lon={long} />}
+          </>
         )}
-        {currentWeatherData && <WeatherForecast lat={lat} lon={long} />}
         {loading && <p>Loading...</p>}
+        {locationNotFound && <p>Location not found. Please try again.</p>}{" "}
       </div>
     </>
   );

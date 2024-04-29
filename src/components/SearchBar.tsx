@@ -15,6 +15,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     }
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <div>
       <Box display="flex" flexDirection="column" alignItems="center">
@@ -23,6 +29,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
           variant="outlined"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onKeyUp={handleKeyPress}
           sx={{ width: "170%", marginBottom: "10px", borderRadius: "10px" }}
         />
         <Button
